@@ -460,15 +460,17 @@ pub fn create_bcx<'a, 'gctx>(
 
     let mut extra_compiler_args = HashMap::new();
     if let Some(args) = extra_args {
-        if units.len() != 1 {
-            anyhow::bail!(
-                "extra arguments to `{}` can only be passed to one \
-                 target, consider filtering\nthe package by passing, \
-                 e.g., `--lib` or `--bin NAME` to specify a single target",
-                extra_args_name
-            );
+        // if units.len() != 1 {
+        //     anyhow::bail!(
+        //         "extra arguments to `{}` can only be passed to one \
+        //          target, consider filtering\nthe package by passing, \
+        //          e.g., `--lib` or `--bin NAME` to specify a single target",
+        //         extra_args_name
+        //     );
+        // }
+        for unit in units.iter() {
+            extra_compiler_args.insert(unit.clone(), args.clone());
         }
-        extra_compiler_args.insert(units[0].clone(), args);
     }
 
     for unit in units
