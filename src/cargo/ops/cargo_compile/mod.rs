@@ -339,12 +339,12 @@ pub fn create_bcx<'a, 'gctx>(
         _ => (None, ""),
     };
 
-    if extra_args.is_some() && to_builds.len() != 1 {
-        panic!(
-            "`{}` should not accept multiple `-p` flags",
-            extra_args_name
-        );
-    }
+    // if extra_args.is_some() && to_builds.len() != 1 {
+    //     panic!(
+    //         "`{}` should not accept multiple `-p` flags",
+    //         extra_args_name
+    //     );
+    // }
 
     let profiles = Profiles::new(ws, build_config.requested_profile)?;
     profiles.validate_packages(
